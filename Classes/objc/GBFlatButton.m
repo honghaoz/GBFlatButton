@@ -79,6 +79,7 @@ static CGFloat const kHorizontalPadding = 14.0f;
 {
     [super setTintColor:tintColor];
     buttonColor = tintColor;
+    [self setNeedsDisplay];
 }
 
 - (UIColor *)tintColor

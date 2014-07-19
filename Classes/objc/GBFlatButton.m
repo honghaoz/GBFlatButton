@@ -56,6 +56,15 @@ static CGFloat const kHorizontalPadding = 14.0f;
     self.layer.masksToBounds = YES;
 }
 
+- (void)setHighlighted:(BOOL)highlighted {
+    [super setHighlighted:highlighted];
+    if (highlighted) {
+        self.backgroundColor = self.tintColor;
+    } else {
+        self.backgroundColor = [UIColor whiteColor];
+    }
+}
+
 - (void)setSelected:(BOOL)selected
 {
     [super setSelected:selected];
@@ -73,6 +82,11 @@ static CGFloat const kHorizontalPadding = 14.0f;
                forState:UIControlStateNormal];
     [self setTitleColor:[UIColor whiteColor]
                forState:UIControlStateSelected];
+    [self setTitleColor:[UIColor whiteColor]
+               forState:UIControlStateHighlighted];
+    self.layer.borderWidth = self.layer.borderWidth ?: 1.0f;
+    self.layer.cornerRadius = self.layer.cornerRadius ?: CGRectGetHeight(self.frame) / 2.0f;
+    self.layer.masksToBounds = YES;
 }
 
 - (void)setTintColor:(UIColor *)tintColor

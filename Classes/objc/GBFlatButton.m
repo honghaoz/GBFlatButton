@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 static CGFloat const kHorizontalPadding = 14.0f;
+static BOOL isDisableHighlight = NO;
 
 @implementation GBFlatButton
 {
@@ -56,12 +57,18 @@ static CGFloat const kHorizontalPadding = 14.0f;
     self.layer.masksToBounds = YES;
 }
 
+- (void)setDisableHighlight:(BOOL)disableHighlight {
+    isDisableHighlight = disableHighlight;
+}
+
 - (void)setHighlighted:(BOOL)highlighted {
-    [super setHighlighted:highlighted];
-    if (highlighted) {
-        self.backgroundColor = self.tintColor;
-    } else {
-        self.backgroundColor = [UIColor whiteColor];
+    if (!isDisableHighlight) {
+        [super setHighlighted:highlighted];
+        if (highlighted) {
+            self.backgroundColor = self.tintColor;
+        } else {
+            self.backgroundColor = [UIColor whiteColor];
+        }
     }
 }
 
